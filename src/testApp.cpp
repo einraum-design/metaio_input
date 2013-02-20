@@ -190,8 +190,8 @@ void testApp::initMetaio(){
 		/* --- BEGIN INTITALIZE METAIO SDK ---------------------------------------- */
 	// GETTING CUSTOM IMAGE FOR PROCESSING - NEEDS PRO LICENSE
 	
-	camWidth 		= 640;	// try to grab at this size. 
-	camHeight 		= 480;
+	camWidth 		= 1280;	// try to grab at this size. 
+	camHeight 		= 720;
 	vidGrabber.setVerbose(true);
 	vidGrabber.initGrabber(camWidth,camHeight);
 	videoMirror 	= new unsigned char[camWidth*camHeight*3];
@@ -201,7 +201,7 @@ void testApp::initMetaio(){
 
 	int u0=0, v0=0;
 	//int wndWidth=1280, wndHeight=1024;
-	int wndWidth=640, wndHeight=480;
+	int wndWidth=camWidth, wndHeight=camHeight;
 	// create the SDK
 	m_metaioSDK = metaio::CreateMetaioSDKWin32();
 	
@@ -241,72 +241,72 @@ void testApp::updateMetaio(){
 	// GETTING CUSTOM IMAGE FOR PROCESSING - NEEDS PRO LICENSE
 	
 
-	vidGrabber.update();
-	if (vidGrabber.isFrameNew()){
-		int totalPixels = camWidth*camHeight*3;
-		unsigned char * pixels = vidGrabber.getPixels();
+	//vidGrabber.update();
+	//if (vidGrabber.isFrameNew()){
+	//	int totalPixels = camWidth*camHeight*3;
+	//	unsigned char * pixels = vidGrabber.getPixels();
 
-		/*for (int i = 0; i < totalPixels; i++){
-			videoInverted[i] = 255- pixels[i];
-		}*/
+	//	/*for (int i = 0; i < totalPixels; i++){
+	//		videoInverted[i] = 255- pixels[i];
+	//	}*/
 
-		/*
-		 for (int i = 0; i < camHeight; i++) {
-        for (int j = 0; j < camWidth*3; j+=3) {
-           //  pixel number
-            int pix1 = (i*camWidth*3) + j;
-            int pix2 = (i*camWidth*3) + (j+1);
-            int pix3 = (i*camWidth*3) + (j+2);
-            // mirror pixel number
-            int mir1 = ((camHeight-1-i)*camWidth*3) + j;
-            int mir2 = ((camHeight-1-i)*camWidth*3) + (j+1);
-            int mir3 = ((camHeight-1-i)*camWidth*3) + (j+2);
-            // swap pixels
-            videoMirror[pix1] = pixels[mir1];
-            videoMirror[pix2] = pixels[mir2];
-            videoMirror[pix3] = pixels[mir3];	
-        }
-		 }
-		 */
-		/*
-		 		 for (int i = 0; i < camHeight; i++) {
-        for (int j = 0; j < camWidth*3; j+=3) {
-             pixel number
-            int pix1 = (i*camWidth*3) + j;
-            int pix2 = (i*camWidth*3) + (j+1);
-            int pix3 = (i*camWidth*3) + (j+2);
-             mirror pixel number
-            int mir1 = (i*camWidth*3)+1 * (camWidth*3 - j-3);
-            int mir2 = (i*camWidth*3)+1 * (camWidth*3 - j-2);
-            int mir3 = (i*camWidth*3)+1 * (camWidth*3 - j-1);
-             swap pixels
-            videoMirror[pix1] = pixels[mir1];
-            videoMirror[pix2] = pixels[mir2];
-            videoMirror[pix3] = pixels[mir3];	
-        }
-    }
-	*/
+	//	/*
+	//	 for (int i = 0; i < camHeight; i++) {
+ //       for (int j = 0; j < camWidth*3; j+=3) {
+ //          //  pixel number
+ //           int pix1 = (i*camWidth*3) + j;
+ //           int pix2 = (i*camWidth*3) + (j+1);
+ //           int pix3 = (i*camWidth*3) + (j+2);
+ //           // mirror pixel number
+ //           int mir1 = ((camHeight-1-i)*camWidth*3) + j;
+ //           int mir2 = ((camHeight-1-i)*camWidth*3) + (j+1);
+ //           int mir3 = ((camHeight-1-i)*camWidth*3) + (j+2);
+ //           // swap pixels
+ //           videoMirror[pix1] = pixels[mir1];
+ //           videoMirror[pix2] = pixels[mir2];
+ //           videoMirror[pix3] = pixels[mir3];	
+ //       }
+	//	 }
+	//	 */
+	//	/*
+	//	 		 for (int i = 0; i < camHeight; i++) {
+ //       for (int j = 0; j < camWidth*3; j+=3) {
+ //            pixel number
+ //           int pix1 = (i*camWidth*3) + j;
+ //           int pix2 = (i*camWidth*3) + (j+1);
+ //           int pix3 = (i*camWidth*3) + (j+2);
+ //            mirror pixel number
+ //           int mir1 = (i*camWidth*3)+1 * (camWidth*3 - j-3);
+ //           int mir2 = (i*camWidth*3)+1 * (camWidth*3 - j-2);
+ //           int mir3 = (i*camWidth*3)+1 * (camWidth*3 - j-1);
+ //            swap pixels
+ //           videoMirror[pix1] = pixels[mir1];
+ //           videoMirror[pix2] = pixels[mir2];
+ //           videoMirror[pix3] = pixels[mir3];	
+ //       }
+ //   }
+	//*/
 
-		videoTexture.loadData(pixels, camWidth,camHeight, GL_BGR_EXT);
-		videoPx->buffer = pixels;
-		//cout << videoPx->buffer << endl;
-		m_metaioSDK->setImage(*videoPx);
+	//	videoTexture.loadData(pixels, camWidth,camHeight, GL_BGR_EXT);
+	//	videoPx->buffer = pixels;
+	//	//cout << videoPx->buffer << endl;
+	//	m_metaioSDK->setImage(*videoPx);
 
 
 
-	}
-	// m_metaioSDK->setImage(videoTexture);
+	//}
+	//// m_metaioSDK->setImage(videoTexture);
 	
-	/*
-	metaio::Vector2di test = m_metaioSDK->setImage("C:/test.jpg");
-	cout << test.x << " " << test.y << endl;
-	*/
+	
+	//metaio::Vector2di test = m_metaioSDK->setImage("C:/1.jpg");
+	//cout << test.x << " " << test.y << endl;
+	
 	for(int j = 0; j < num_trackers; j++) {
 		metaio_found[j] = false;
 	}
 	metaio_foundObject = false;
-	//if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
-	//else m_metaioSDK->setImage("C:/2.jpg");
+	if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
+	else m_metaioSDK->setImage("C:/1.jpg");
 	selTr = 0;
 	// do capture, tracking and rendering
 	m_metaioSDK->requestCameraImage();
