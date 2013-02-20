@@ -15,8 +15,6 @@
 
 #include <metaioSDK/IMetaioSDKWin32.h>
 
-class CameraImageRenderer;
-
 class testApp : public ofBaseApp, metaio::IMetaioSDKCallback{
 	
 	public:
@@ -45,6 +43,7 @@ class testApp : public ofBaseApp, metaio::IMetaioSDKCallback{
 
 		ofVideoGrabber 		vidGrabber;
 		unsigned char * 	videoInverted;
+		unsigned char * videoMirror;
 		ofTexture			videoTexture;
 		int 				camWidth;
 		int 				camHeight;
@@ -67,9 +66,6 @@ class testApp : public ofBaseApp, metaio::IMetaioSDKCallback{
 
 		metaio::ImageStruct* videoPx;
 
-		// CameraImageRenderer
-		float						m_screenAspect;
-		CameraImageRenderer*		m_pCameraImageRenderer;
 
 private:
         ofLight	light;

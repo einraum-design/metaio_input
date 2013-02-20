@@ -8,9 +8,7 @@
  */
 
 #include "testApp.h"
-#include "CameraImageRenderer.h"
 #include <metaioSDK/IGeometry.h>
-
 
 
 //--------------------------------------------------------------
@@ -136,14 +134,8 @@ void testApp::draw(){
 
 
 void testApp::onNewCameraFrame( metaio::ImageStruct* cameraFrame )
-{
-	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_RGB);
-
-	if (m_pCameraImageRenderer){
-		m_pCameraImageRenderer->updateFrame(cameraFrame);
-		cout << "hello m_pCameraImageRenderer" << endl;
-	}
-		
+{ 
+	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_BGR_EXT );
 }
 
 
@@ -202,23 +194,19 @@ void testApp::initMetaio(){
 	camHeight 		= 480;
 	vidGrabber.setVerbose(true);
 	vidGrabber.initGrabber(camWidth,camHeight);
-	videoInverted 	= new unsigned char[camWidth*camHeight*3];
-	//videoTexture.allocate(camWidth,camHeight, GL_RGB);	
-	
-	
-
+	videoMirror 	= new unsigned char[camWidth*camHeight*3];
+	videoTexture.allocate(camWidth,camHeight, GL_RGB);	
 
 	videoPx = new metaio::ImageStruct(videoInverted, camWidth, camHeight, metaio::common::ECF_GRAY, true);
 
 	int u0=0, v0=0;
 	//int wndWidth=1280, wndHeight=1024;
 	int wndWidth=640, wndHeight=480;
-	//HWND handler = WindowFromDC(wglGetCurrentDC());  
 	// create the SDK
 	m_metaioSDK = metaio::CreateMetaioSDKWin32();
 	
 	//m_metaioSDK->initializeRenderer(wndWidth, wndHeight, u0, v0,  handler, metaio::ERENDER_SYSTEM_NULL );
-	m_metaioSDK->initializeRenderer(wndWidth, wndHeight, metaio::ESCREEN_ROTATION_0, (HWND)0, metaio::ERENDER_SYSTEM_NULL );
+	m_metaioSDK->initializeRenderer(wndWidth, wndHeight, metaio::ESCREEN_ROTATION_0, (HWND)0, metaio::ERENDER_SYSTEM_NULL);
 	m_sensors = metaio::CreateSensorsComponent();
 	m_metaioSDK->registerSensorsComponent( m_sensors );
 	// set the callback to this class
@@ -226,11 +214,6 @@ void testApp::initMetaio(){
 	// activate 1st camera
 	//m_metaioSDK->startCamera( 0 );
 	//m_metaioSDK->setCameraParameters("camParams.xml");
-
-	m_pCameraImageRenderer = new CameraImageRenderer();
-	//m_pCameraImageRenderer(0),
-
-	m_screenAspect = (float)wndWidth / wndHeight;
 
 	// load your favorite configuration
 	bool result = m_metaioSDK->setTrackingConfiguration( "TrackingData_MarkerlessFast.xml" );
@@ -257,28 +240,77 @@ void testApp::updateMetaio(){
 	/* --- BEGIN UPDATE METAIO SDK ---------------------------------------- */
 	// GETTING CUSTOM IMAGE FOR PROCESSING - NEEDS PRO LICENSE
 	
+
 	vidGrabber.update();
 	if (vidGrabber.isFrameNew()){
 		int totalPixels = camWidth*camHeight*3;
 		unsigned char * pixels = vidGrabber.getPixels();
+
 		/*for (int i = 0; i < totalPixels; i++){
 			videoInverted[i] = 255- pixels[i];
 		}*/
-		//videoTexture.loadData(videoInverted, camWidth,camHeight, GL_RGB);
+
+		/*
+		 for (int i = 0; i < camHeight; i++) {
+        for (int j = 0; j < camWidth*3; j+=3) {
+           //  pixel number
+            int pix1 = (i*camWidth*3) + j;
+            int pix2 = (i*camWidth*3) + (j+1);
+            int pix3 = (i*camWidth*3) + (j+2);
+            // mirror pixel number
+            int mir1 = ((camHeight-1-i)*camWidth*3) + j;
+            int mir2 = ((camHeight-1-i)*camWidth*3) + (j+1);
+            int mir3 = ((camHeight-1-i)*camWidth*3) + (j+2);
+            // swap pixels
+            videoMirror[pix1] = pixels[mir1];
+            videoMirror[pix2] = pixels[mir2];
+            videoMirror[pix3] = pixels[mir3];	
+        }
+		 }
+		 */
+		/*
+		 		 for (int i = 0; i < camHeight; i++) {
+        for (int j = 0; j < camWidth*3; j+=3) {
+             pixel number
+            int pix1 = (i*camWidth*3) + j;
+            int pix2 = (i*camWidth*3) + (j+1);
+            int pix3 = (i*camWidth*3) + (j+2);
+             mirror pixel number
+            int mir1 = (i*camWidth*3)+1 * (camWidth*3 - j-3);
+            int mir2 = (i*camWidth*3)+1 * (camWidth*3 - j-2);
+            int mir3 = (i*camWidth*3)+1 * (camWidth*3 - j-1);
+             swap pixels
+            videoMirror[pix1] = pixels[mir1];
+            videoMirror[pix2] = pixels[mir2];
+            videoMirror[pix3] = pixels[mir3];	
+        }
+    }
+	*/
+
+		videoTexture.loadData(pixels, camWidth,camHeight, GL_BGR_EXT);
 		videoPx->buffer = pixels;
 		//cout << videoPx->buffer << endl;
 		m_metaioSDK->setImage(*videoPx);
+
+
+
 	}
 	// m_metaioSDK->setImage(videoTexture);
 	
+	/*
+	metaio::Vector2di test = m_metaioSDK->setImage("C:/test.jpg");
+	cout << test.x << " " << test.y << endl;
+	*/
 	for(int j = 0; j < num_trackers; j++) {
 		metaio_found[j] = false;
 	}
 	metaio_foundObject = false;
+	//if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
+	//else m_metaioSDK->setImage("C:/2.jpg");
 	selTr = 0;
 	// do capture, tracking and rendering
 	m_metaioSDK->requestCameraImage();
-	//m_metaioSDK->render();
+	m_metaioSDK->render();
 	//  set the geometry to the detected COS
 	std::vector< metaio::TrackingValues > trackingValues = m_metaioSDK->getTrackingValues();
 	if( trackingValues.size()>0 )
@@ -321,11 +353,7 @@ void testApp::drawMetaio(){
 	
 	glDisable(GL_DEPTH_TEST);
 	ofSetColor(255);
-	camTex.draw(0,ofGetHeight(), ofGetWidth(), -ofGetHeight());
-
-	// Render camera image as background
-	m_pCameraImageRenderer->draw(m_screenAspect);
-
+	camTex.draw(0,0, ofGetWidth(), ofGetHeight());
 	glEnable(GL_DEPTH_TEST);
 }
 
