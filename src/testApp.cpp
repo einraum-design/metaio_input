@@ -133,15 +133,9 @@ void testApp::draw(){
 
 
 
-void testApp::onNewCameraFrame( metaio::ImageStruct* cameraFrame )
-{ 
-	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_BGR_EXT );
-}
-
-
 //--------------------------------------------------------------
 void testApp::keyPressed  (int key){ 
-	
+	cout << blah << endl;
 }
 
 //--------------------------------------------------------------
@@ -190,18 +184,19 @@ void testApp::initMetaio(){
 		/* --- BEGIN INTITALIZE METAIO SDK ---------------------------------------- */
 	// GETTING CUSTOM IMAGE FOR PROCESSING - NEEDS PRO LICENSE
 	
-	camWidth 		= 640;	// try to grab at this size. 
-	camHeight 		= 480;
+	camWidth 		= 1280;	// try to grab at this size. 
+	camHeight 		= 720;
 	vidGrabber.setVerbose(true);
 	vidGrabber.initGrabber(camWidth,camHeight);
 	videoMirror 	= new unsigned char[camWidth*camHeight*3];
+	blah 	= new unsigned char[camWidth*camHeight*3];
 	videoTexture.allocate(camWidth,camHeight, GL_RGB);	
 
-	videoPx = new metaio::ImageStruct(videoInverted, camWidth, camHeight, metaio::common::ECF_GRAY, true);
+	videoPx = new metaio::ImageStruct(videoInverted, camWidth, camHeight, metaio::common::ECF_R8G8B8, true);
 
 	int u0=0, v0=0;
 	//int wndWidth=1280, wndHeight=1024;
-	int wndWidth=640, wndHeight=480;
+	int wndWidth=camWidth, wndHeight=camHeight;
 	// create the SDK
 	m_metaioSDK = metaio::CreateMetaioSDKWin32();
 	
@@ -232,6 +227,14 @@ void testApp::initMetaio(){
 		metaio_pos[j] = ofVec3f(0,0,0);
 		metaio_rot[j] = ofQuaternion(0, 0, 0, 0);
 	}
+}
+
+
+
+void testApp::onNewCameraFrame( metaio::ImageStruct* cameraFrame )
+{ 
+	blah = cameraFrame->buffer;
+	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_BGR_EXT );
 }
 
 
@@ -286,8 +289,7 @@ void testApp::updateMetaio(){
         }
     }
 	*/
-
-		videoTexture.loadData(pixels, camWidth,camHeight, GL_BGR_EXT);
+		videoTexture.loadData(pixels, camWidth,camHeight, GL_RGB);
 		videoPx->buffer = pixels;
 		//cout << videoPx->buffer << endl;
 		m_metaioSDK->setImage(*videoPx);
@@ -295,18 +297,18 @@ void testApp::updateMetaio(){
 
 
 	}
-	// m_metaioSDK->setImage(videoTexture);
+	//// m_metaioSDK->setImage(videoTexture);
 	
-	/*
-	metaio::Vector2di test = m_metaioSDK->setImage("C:/test.jpg");
-	cout << test.x << " " << test.y << endl;
-	*/
+	
+	//metaio::Vector2di test = m_metaioSDK->setImage("C:/1.jpg");
+	//cout << test.x << " " << test.y << endl;
+	
 	for(int j = 0; j < num_trackers; j++) {
 		metaio_found[j] = false;
 	}
 	metaio_foundObject = false;
 	//if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
-	//else m_metaioSDK->setImage("C:/2.jpg");
+	//else m_metaioSDK->setImage("C:/1.jpg");
 	selTr = 0;
 	// do capture, tracking and rendering
 	m_metaioSDK->requestCameraImage();
@@ -353,7 +355,8 @@ void testApp::drawMetaio(){
 	
 	glDisable(GL_DEPTH_TEST);
 	ofSetColor(255);
-	camTex.draw(0,0, ofGetWidth(), ofGetHeight());
+	videoTexture.draw(0,0, ofGetWidth(), ofGetHeight());
+
 	glEnable(GL_DEPTH_TEST);
 }
 

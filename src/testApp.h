@@ -53,6 +53,8 @@ class testApp : public ofBaseApp, metaio::IMetaioSDKCallback{
 		metaio::ISensorsComponent*		m_sensors;
 		bool 	m_requestingClose;
 
+		unsigned char * blah;
+
 		int num_trackers;
 		bool metaio_foundObject;
 		bool * metaio_found;
