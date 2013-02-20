@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Camera>
+      <Name>Logitech</Name>
+      <Info />
+      <CalibrationResolution>
+            <X>1920</X>
+            <Y>1080</Y>
+      </CalibrationResolution>
+</Camera>

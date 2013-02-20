@@ -1,0 +1,18 @@
+﻿Der Buildvorgang wurde am 03.01.2013 15:26:47 gestartet.
+     1>Projekt "C:\Users\Public\Documents\of_v0073_vs2010_release\apps\myApps\130103_metaio_vs2010\videoGrabberExample.vcxproj" auf Knoten "2", build Ziel(e).
+     1>InitializeBuildStatus:
+         Aktualisieren des Timestamps von "obj\Debug\videoGrabberExample.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\libs\openFrameworks /I..\..\..\libs\openFrameworks\graphics /I..\..\..\libs\openFrameworks\app /I..\..\..\libs\openFrameworks\sound /I..\..\..\libs\openFrameworks\utils /I..\..\..\libs\openFrameworks\communication /I..\..\..\libs\openFrameworks\video /I..\..\..\libs\openFrameworks\types /I..\..\..\libs\openFrameworks\math /I..\..\..\libs\openFrameworks\3d /I..\..\..\libs\openFrameworks\gl /I..\..\..\libs\openFrameworks\events /I..\..\..\libs\glut\include /I..\..\..\libs\rtAudio\include /I..\..\..\libs\quicktime\include /I..\..\..\libs\freetype\include /I..\..\..\libs\freetype\include\freetype2 /I..\..\..\libs\freeImage\include /I..\..\..\libs\fmodex\include /I..\..\..\libs\videoInput\include /I..\..\..\libs\glew\include\ /I..\..\..\libs\glu\include /I..\..\..\libs\tess2\include /I..\..\..\libs\cairo\include\cairo /I..\..\..\libs\poco\include /I..\..\..\addons /Isrc /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D POCO_STATIC /D CAIRO_WIN32_STATIC_BUILD /D DISABLE_SOME_FLOATING_POINT /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Debug\\" /Fd"obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp src\main.cpp src\testApp.cpp
+         testApp.cpp
+     1>c:\users\public\documents\of_v0073_vs2010_release\apps\myapps\130103_metaio_vs2010\src\testapp.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "ofxAssimpModelLoader.h": No such file or directory
+         main.cpp
+     1>c:\users\public\documents\of_v0073_vs2010_release\apps\myapps\130103_metaio_vs2010\src\testapp.h(4): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "ofxAssimpModelLoader.h": No such file or directory
+         ofxAssimpModelLoader.cpp
+     1>c:\users\public\documents\of_v0073_vs2010_release\addons\ofxassimpmodelloader\src\ofxassimpmodelloader.h(5): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "assimp.h": No such file or directory
+         Code wird generiert...
+     1>Die Erstellung des Projekts "C:\Users\Public\Documents\of_v0073_vs2010_release\apps\myApps\130103_metaio_vs2010\videoGrabberExample.vcxproj" ist abgeschlossen, build Ziel(e) -- FEHLER.
+
+Fehler beim Erstellen
+
+Verstrichene Zeit 00:00:05.31
