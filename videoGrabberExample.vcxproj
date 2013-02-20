@@ -100,7 +100,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp" />
-    <ClCompile Include="CameraImageRenderer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\testApp.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(AdditionalIncludeDirectories);src;libs;include</AdditionalIncludeDirectories>
@@ -141,7 +140,6 @@
     <ClInclude Include="..\..\..\libs\assimp\include\LogStream.h" />
     <ClInclude Include="..\..\..\libs\assimp\include\NullLogger.h" />
     <ClInclude Include="..\..\..\libs\assimp\include\ProgressHandler.h" />
-    <ClInclude Include="CameraImageRenderer.h" />
     <ClInclude Include="src\testApp.h" />
   </ItemGroup>
   <ItemGroup>
