@@ -133,15 +133,9 @@ void testApp::draw(){
 
 
 
-void testApp::onNewCameraFrame( metaio::ImageStruct* cameraFrame )
-{ 
-	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_BGR_EXT );
-}
-
-
 //--------------------------------------------------------------
 void testApp::keyPressed  (int key){ 
-	
+	cout << blah << endl;
 }
 
 //--------------------------------------------------------------
@@ -195,9 +189,10 @@ void testApp::initMetaio(){
 	vidGrabber.setVerbose(true);
 	vidGrabber.initGrabber(camWidth,camHeight);
 	videoMirror 	= new unsigned char[camWidth*camHeight*3];
+	blah 	= new unsigned char[camWidth*camHeight*3];
 	videoTexture.allocate(camWidth,camHeight, GL_RGB);	
 
-	videoPx = new metaio::ImageStruct(videoInverted, camWidth, camHeight, metaio::common::ECF_GRAY, true);
+	videoPx = new metaio::ImageStruct(videoInverted, camWidth, camHeight, metaio::common::ECF_R8G8B8, true);
 
 	int u0=0, v0=0;
 	//int wndWidth=1280, wndHeight=1024;
@@ -235,66 +230,73 @@ void testApp::initMetaio(){
 }
 
 
+
+void testApp::onNewCameraFrame( metaio::ImageStruct* cameraFrame )
+{ 
+	blah = cameraFrame->buffer;
+	camTex.loadData(cameraFrame->buffer, cameraFrame->width, cameraFrame->height, GL_BGR_EXT );
+}
+
+
 //--------------------------------------------------------------
 void testApp::updateMetaio(){
 	/* --- BEGIN UPDATE METAIO SDK ---------------------------------------- */
 	// GETTING CUSTOM IMAGE FOR PROCESSING - NEEDS PRO LICENSE
 	
 
-	//vidGrabber.update();
-	//if (vidGrabber.isFrameNew()){
-	//	int totalPixels = camWidth*camHeight*3;
-	//	unsigned char * pixels = vidGrabber.getPixels();
+	vidGrabber.update();
+	if (vidGrabber.isFrameNew()){
+		int totalPixels = camWidth*camHeight*3;
+		unsigned char * pixels = vidGrabber.getPixels();
 
-	//	/*for (int i = 0; i < totalPixels; i++){
-	//		videoInverted[i] = 255- pixels[i];
-	//	}*/
+		/*for (int i = 0; i < totalPixels; i++){
+			videoInverted[i] = 255- pixels[i];
+		}*/
 
-	//	/*
-	//	 for (int i = 0; i < camHeight; i++) {
- //       for (int j = 0; j < camWidth*3; j+=3) {
- //          //  pixel number
- //           int pix1 = (i*camWidth*3) + j;
- //           int pix2 = (i*camWidth*3) + (j+1);
- //           int pix3 = (i*camWidth*3) + (j+2);
- //           // mirror pixel number
- //           int mir1 = ((camHeight-1-i)*camWidth*3) + j;
- //           int mir2 = ((camHeight-1-i)*camWidth*3) + (j+1);
- //           int mir3 = ((camHeight-1-i)*camWidth*3) + (j+2);
- //           // swap pixels
- //           videoMirror[pix1] = pixels[mir1];
- //           videoMirror[pix2] = pixels[mir2];
- //           videoMirror[pix3] = pixels[mir3];	
- //       }
-	//	 }
-	//	 */
-	//	/*
-	//	 		 for (int i = 0; i < camHeight; i++) {
- //       for (int j = 0; j < camWidth*3; j+=3) {
- //            pixel number
- //           int pix1 = (i*camWidth*3) + j;
- //           int pix2 = (i*camWidth*3) + (j+1);
- //           int pix3 = (i*camWidth*3) + (j+2);
- //            mirror pixel number
- //           int mir1 = (i*camWidth*3)+1 * (camWidth*3 - j-3);
- //           int mir2 = (i*camWidth*3)+1 * (camWidth*3 - j-2);
- //           int mir3 = (i*camWidth*3)+1 * (camWidth*3 - j-1);
- //            swap pixels
- //           videoMirror[pix1] = pixels[mir1];
- //           videoMirror[pix2] = pixels[mir2];
- //           videoMirror[pix3] = pixels[mir3];	
- //       }
- //   }
-	//*/
-
-	//	videoTexture.loadData(pixels, camWidth,camHeight, GL_BGR_EXT);
-	//	videoPx->buffer = pixels;
-	//	//cout << videoPx->buffer << endl;
-	//	m_metaioSDK->setImage(*videoPx);
-
+		/*
+		 for (int i = 0; i < camHeight; i++) {
+        for (int j = 0; j < camWidth*3; j+=3) {
+           //  pixel number
+            int pix1 = (i*camWidth*3) + j;
+            int pix2 = (i*camWidth*3) + (j+1);
+            int pix3 = (i*camWidth*3) + (j+2);
+            // mirror pixel number
+            int mir1 = ((camHeight-1-i)*camWidth*3) + j;
+            int mir2 = ((camHeight-1-i)*camWidth*3) + (j+1);
+            int mir3 = ((camHeight-1-i)*camWidth*3) + (j+2);
+            // swap pixels
+            videoMirror[pix1] = pixels[mir1];
+            videoMirror[pix2] = pixels[mir2];
+            videoMirror[pix3] = pixels[mir3];	
+        }
+		 }
+		 */
+		/*
+		 		 for (int i = 0; i < camHeight; i++) {
+        for (int j = 0; j < camWidth*3; j+=3) {
+             pixel number
+            int pix1 = (i*camWidth*3) + j;
+            int pix2 = (i*camWidth*3) + (j+1);
+            int pix3 = (i*camWidth*3) + (j+2);
+             mirror pixel number
+            int mir1 = (i*camWidth*3)+1 * (camWidth*3 - j-3);
+            int mir2 = (i*camWidth*3)+1 * (camWidth*3 - j-2);
+            int mir3 = (i*camWidth*3)+1 * (camWidth*3 - j-1);
+             swap pixels
+            videoMirror[pix1] = pixels[mir1];
+            videoMirror[pix2] = pixels[mir2];
+            videoMirror[pix3] = pixels[mir3];	
+        }
+    }
+	*/
+		videoTexture.loadData(pixels, camWidth,camHeight, GL_RGB);
+		videoPx->buffer = pixels;
+		//cout << videoPx->buffer << endl;
+		m_metaioSDK->setImage(*videoPx);
 
 
-	//}
+
+	}
 	//// m_metaioSDK->setImage(videoTexture);
 	
 	
@@ -305,8 +307,8 @@ void testApp::updateMetaio(){
 		metaio_found[j] = false;
 	}
 	metaio_foundObject = false;
-	if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
-	else m_metaioSDK->setImage("C:/1.jpg");
+	//if(ofGetFrameNum()%30 > 15) m_metaioSDK->setImage("C:/test.jpg");
+	//else m_metaioSDK->setImage("C:/1.jpg");
 	selTr = 0;
 	// do capture, tracking and rendering
 	m_metaioSDK->requestCameraImage();
@@ -353,7 +355,8 @@ void testApp::drawMetaio(){
 	
 	glDisable(GL_DEPTH_TEST);
 	ofSetColor(255);
-	camTex.draw(0,0, ofGetWidth(), ofGetHeight());
+	videoTexture.draw(0,0, ofGetWidth(), ofGetHeight());
+
 	glEnable(GL_DEPTH_TEST);
 }
 

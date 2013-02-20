@@ -1,33 +1,30 @@
-﻿Build started 20.02.2013 10:36:36.
-     1>Project "C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\videoGrabberExample.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Iinclude\metaioSDK /I..\..\..\libs\openFrameworks /I..\..\..\libs\openFrameworks\graphics /I..\..\..\libs\openFrameworks\app /I..\..\..\libs\openFrameworks\sound /I..\..\..\libs\openFrameworks\utils /I..\..\..\libs\openFrameworks\communication /I..\..\..\libs\openFrameworks\video /I..\..\..\libs\openFrameworks\types /I..\..\..\libs\openFrameworks\math /I..\..\..\libs\openFrameworks\3d /I..\..\..\libs\openFrameworks\gl /I..\..\..\libs\openFrameworks\events /I..\..\..\libs\glut\include /I..\..\..\libs\rtAudio\include /I..\..\..\libs\quicktime\include /I..\..\..\libs\freetype\include /I..\..\..\libs\freetype\include\freetype2 /I..\..\..\libs\freeImage\include /I..\..\..\libs\fmodex\include /I..\..\..\libs\videoInput\include /I..\..\..\libs\glew\include\ /I..\..\..\libs\glu\include /I..\..\..\libs\tess2\include /I..\..\..\libs\cairo\include\cairo /I..\..\..\libs\poco\include /I..\..\..\addons /I..\..\..\addons\ofxAssimpModelLoader\libs\assimp /I..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs2010 /I..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib /I..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include\Compiler /I..\..\..\addons\ofxAssimpModelLoader\libs\assimp\include /I..\..\..\addons\ofxAssimpModelLoader\libs /I..\..\..\addons\ofxAssimpModelLoader\src /Isrc /Ilib /Iinclude /Isrc /Ilibs /Iinclude /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _CONSOLE /D POCO_STATIC /D CAIRO_WIN32_STATIC_BUILD /D DISABLE_SOME_FLOATING_POINT /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"obj\Release\\" /Fd"obj\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt src\testApp.cpp
-         testApp.cpp
+﻿Build started 20.02.2013 15:56:48.
+     1>Project "C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\videoGrabberExample.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "obj\Release\ofMetaio.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"bin\ofMetaio.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:libs /LIBPATH:..\..\..\addons\ofxAssimpModelLoader\libs\assimp\lib\vs2010 /LIBPATH:..\..\..\libs\glut\lib\vs2010 /LIBPATH:..\..\..\libs\rtAudio\lib\vs2010 /LIBPATH:..\..\..\libs\FreeImage\lib\vs2010 /LIBPATH:..\..\..\libs\freetype\lib\vs2010 /LIBPATH:..\..\..\libs\quicktime\lib\vs2010 /LIBPATH:..\..\..\libs\fmodex\lib\vs2010 /LIBPATH:..\..\..\libs\videoInput\lib\vs2010 /LIBPATH:..\..\..\libs\cairo\lib\vs2010 /LIBPATH:..\..\..\libs\glew\lib\vs2010 /LIBPATH:..\..\..\libs\glu\lib\vs2010 /LIBPATH:..\..\..\libs\Poco\lib\vs2010 /LIBPATH:..\..\..\libs\tess2\lib\vs2010 assimp.lib "cairo-static.lib" "pixman-1.lib" msimg32.lib OpenGL32.lib GLu32.lib kernel32.lib setupapi.lib Vfw32.lib comctl32.lib glut32.lib rtAudioD.lib videoInput.lib libfreetype.lib FreeImage.lib qtmlClient.lib dsound.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib glew32s.lib fmodex_vc.lib glu32.lib PocoFoundationmd.lib PocoNetmd.lib PocoUtilmd.lib PocoXMLmd.lib Ws2_32.lib tess2.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:PocoFoundationd.lib /NODEFAULTLIB:atlthunk.lib /NODEFAULTLIB:LIBC.lib /NODEFAULTLIB:LIBCMT /MANIFEST /ManifestFile:"obj\Release\ofMetaio.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\bin\ofMetaio.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"bin\ofMetaio.lib" /MACHINE:X86 obj\Release\ofxAssimpModelLoader.obj
-         obj\Release\CameraImageRenderer.obj
-         obj\Release\main.obj
-         obj\Release\testApp.obj
-         libs\metaioSDK.lib
-         libs\metaioSDKD.lib
-         "C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\libs\openFrameworksCompiled\lib\vs2010\openframeworksLib.lib"
-            Creating library bin\ofMetaio.lib and object bin\ofMetaio.exp
-         videoGrabberExample.vcxproj -> C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\bin\ofMetaio.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"bin\ofMetaio.exe;#1" /manifest obj\Release\ofMetaio.exe.intermediate.manifest
+         All outputs are up-to-date.
+         videoGrabberExample.vcxproj -> C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\bin\ofMetaio.exe
        PostBuildEvent:
-         xcopy /e /i /y "C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\*.dll" "C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\bin"
+         Description: adding DLLs and creating data folder
+         xcopy /e /i /y "C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\*.dll" "C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\bin"
          :VCEnd
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\Assimp32.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\fmodex.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\fmodexL.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\FreeImage.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\FreeType-6.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\glut32.dll
-         C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\..\..\..\export\vs2010\Zlib.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\Assimp32.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\fmodex.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\fmodexL.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\FreeImage.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\FreeType-6.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\glut32.dll
+         C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\..\..\..\export\vs2010\Zlib.dll
          7 Datei(en) kopiert
-     1>Done Building Project "C:\Users\DesignUndSysteme\Documents\Visual Studio 2012\Projects\of_v0073_vs2010_release\apps\myApps\130220_metaio_vs2010_coperion\videoGrabberExample.vcxproj" (Build target(s)).
+       FinalizeBuildStatus:
+         Deleting file "obj\Release\ofMetaio.unsuccessfulbuild".
+         Touching "obj\Release\ofMetaio.lastbuildstate".
+     1>Done Building Project "C:\Users\coperion\Documents\Visual Studio 2010\Projects\of_v0073_vs2010_release\apps\myApps\metaio_input\videoGrabberExample.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.86
+Time Elapsed 00:00:00.09

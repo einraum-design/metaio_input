@@ -10,9 +10,6 @@
     <ClCompile Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.cpp">
       <Filter>addons\ofxAssimpModelLoader</Filter>
     </ClCompile>
-    <ClCompile Include="CameraImageRenderer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -139,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxAssimpModelLoader\src\ofxAssimpModelLoader.h">
       <Filter>addons\ofxAssimpModelLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraImageRenderer.h">
-      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
